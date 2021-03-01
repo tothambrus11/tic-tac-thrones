@@ -1,0 +1,158 @@
+#game-img {
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
+  max-height: 40%;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #151515;
+  background-image: url(../../assets/tttbg2.png);
+  background-position: center;
+  background-size: auto 50%;
+  position: relative;
+
+  main {
+    padding: 40px;
+    box-sizing: border-box;
+
+    background-color: white;
+    box-shadow: 2px 2px 10px #000;
+
+
+    h1, h2 {
+      text-align: center;
+      color: black;
+      margin: 10px;
+      font-size: 2em;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    h2 {
+      font-size: 1.6em;
+    }
+
+    p {
+      font-size: 1.1em;
+      text-align: justify;
+
+      #intro {
+        text-align: center;
+      }
+    }
+
+    #btn-cnt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        width: 200px;
+        font-size: 1.2em;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        background-color: #2a498c;
+        padding-right: 14px;
+
+        &:nth-child(2) {
+          background-color: #80081f;
+        }
+
+        outline: none;
+        margin-bottom: 10px;
+        font-family: inherit;
+        cursor: pointer;
+        transition: .3s;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        span {
+          padding: 14px;
+        }
+
+        img {
+          height: 1.1em;
+        }
+
+        &:hover {
+          background-color: #456fc8;
+        }
+
+        &:nth-child(2):hover {
+          background-color: #e71941;
+        }
+      }
+    }
+  }
+}
+
+footer.bottom{
+  padding: 30px 0;
+}
+footer.top{
+  padding-top: 10px;
+  display: none;
+}
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-self: flex-end;
+
+  background-color: white;
+  width: 100%;
+
+  a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #2a498c;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (min-width: 532px) {
+  @media (max-height: 520px) {
+    main{
+      border-radius: 0 !important;
+    }
+  }
+  @media (max-height: 700px) {
+    footer.bottom{
+      display: none;
+    }
+    footer.top{
+      display: flex !important;
+    }
+  }
+  :host {
+    justify-content: flex-end;
+  }
+  main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    border-radius: 30px;
+
+    max-height: 100%;
+    overflow-y: auto;
+
+    button {
+      width: 300px;
+    }
+  }
+}

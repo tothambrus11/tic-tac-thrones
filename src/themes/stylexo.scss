@@ -1,0 +1,123 @@
+$outer-border: #080808;
+$inner-border: #0e0e0e;
+
+:root {
+  --unit: min(100vw, 800px);
+  --inner-border-width: max(2px, calc(var(--unit) * 0.005));
+  --outer-border-width: max(3px, calc(var(--unit) * 0.015));
+  --outer-outer-border-width: max(9px, calc(var(--unit) * 0.045));
+}
+
+@media (min-aspect-ratio: 1/1) {
+  :root {
+    --unit: min(100vh, 800px);
+  }
+}
+
+@keyframes growbg {
+  from{
+    background-size: 0;
+  }
+  to{
+    background-size: 60%;
+  }
+}
+
+@mixin occupiable($level3) {
+  transition: 0.3s;
+
+  &.occupied {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #151515;
+    padding: 0;
+
+    &.blues {
+      .inner{
+        background-image: url("../assets/Xr.svg");
+      }
+    }
+
+    &.reds {
+      .inner{
+        background-image: url("../assets/O.svg");
+      }
+    }
+
+    .inner {
+      width: 100%;
+      height: 100%;
+
+      box-sizing: border-box;
+      background-size: 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation-name: growbg;
+      animation-duration: .3s;
+    }
+  }
+}
+
+#cont {
+  display: grid;
+  grid-template-columns: repeat(3, 1.00fr);
+  justify-items: stretch;
+  align-items: stretch;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  max-height: 800px;
+  background-color: $outer-border;
+  width: var(--unit);
+  height: var(--unit);
+  grid-gap: var(--outer-border-width);
+  padding: var(--outer-border-width);
+  box-sizing: border-box;
+  box-shadow: 0 0 calc(var(--unit) * 0.03) #0007;
+  overflow: hidden;
+
+  @include occupiable(9);
+
+  &.occupied{
+    border: calc(var(--outer-outer-border-width)) solid $outer-border;
+  }
+}
+
+
+
+.field {
+  background-color: #151515;
+
+  @include occupiable(1);
+}
+
+.reds-turn .area.active .field:not(.occupied):hover {
+  background-color: rgba(224, 17, 57, 0.27) !important;
+}
+
+.blues-turn .area.active .field:not(.occupied):hover {
+  background-color: rgba(60, 107, 208, 0.27) !important;
+}
+
+.area.active .field:not(.occupied){
+  background-color: #222;
+}
+
+.area {
+  display: grid;
+  grid-template-columns: repeat(3, 1.00fr);
+  justify-items: stretch;
+  align-items: stretch;
+  grid-gap: var(--inner-border-width);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  background-color: $inner-border;
+
+  transition: 0.3s;
+  @include occupiable(3);
+}

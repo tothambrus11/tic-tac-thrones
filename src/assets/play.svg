@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <clipPath id="clip-play">
+      <rect width="500" height="500"/>
+    </clipPath>
+  </defs>
+  <g id="play" clip-path="url(#clip-play)">
+    <path id="Polygon_1" data-name="Polygon 1" d="M243.991,38.938a26,26,0,0,1,45.019,0l221.438,383.05A26,26,0,0,1,487.938,461H45.062a26,26,0,0,1-22.509-39.013Z" transform="translate(481 -16) rotate(90)" fill="#fff"/>
+  </g>
+</svg>

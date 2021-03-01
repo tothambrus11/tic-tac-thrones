@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <clipPath id="clip-internet">
+      <rect width="500" height="500"/>
+    </clipPath>
+  </defs>
+  <g id="internet" clip-path="url(#clip-internet)">
+    <g id="Ellipse_31" data-name="Ellipse 31" fill="none" stroke="#fff" stroke-width="35">
+      <circle cx="250" cy="250" r="250" stroke="none"/>
+      <circle cx="250" cy="250" r="232.5" fill="none"/>
+    </g>
+    <line id="Line_12" data-name="Line 12" y2="473.525" transform="translate(250.455 11.981)" fill="none" stroke="#fff" stroke-width="35"/>
+    <path id="Path_18" data-name="Path 18" d="M0,0S120.428,88.355,121.165,237.933,0,473.525,0,473.525" transform="translate(250.455 11.981)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="35"/>
+    <path id="Path_19" data-name="Path 19" d="M122.729,0h0C122.485.177.749,88.5,0,237.933-.743,387.512,122.729,473.525,122.729,473.525" transform="translate(127.726 11.981)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="35"/>
+    <line id="Line_13" data-name="Line 13" x2="409.627" transform="translate(45.186 139.776)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="35"/>
+    <line id="Line_15" data-name="Line 15" x2="409.627" transform="translate(45.07 359.993)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="35"/>
+    <line id="Line_14" data-name="Line 14" x2="448.422" transform="translate(34.801 249.884)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="35"/>
+  </g>
+</svg>
