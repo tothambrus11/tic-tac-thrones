@@ -7,4 +7,4 @@ export class Colors {
     }
 }
 
-export type Color = false | true;
+export type Color = boolean;

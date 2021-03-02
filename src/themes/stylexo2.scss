@@ -35,13 +35,13 @@ $inner-border: #0e0e0e;
 
     &.blues {
       .inner{
-        background-image: url("../assets/Xr.svg");
+        background-image: url(../assets/Xr.svg);
       }
     }
 
     &.reds {
       .inner{
-        background-image: url("../assets/O.svg");
+        background-image: url(../assets/O.svg);
       }
     }
 
@@ -59,7 +59,7 @@ $inner-border: #0e0e0e;
   }
 }
 
-#container {
+.game {
   display: grid;
   grid-template-columns: repeat(3, 1.00fr);
   justify-items: stretch;
@@ -88,25 +88,25 @@ $inner-border: #0e0e0e;
 
 
 //ok
-.field {
+field {
   background-color: #151515;
 
   @include occupiable(1);
 }
 
-.reds-turn .area.active .field:not(.occupied):hover {
+.reds-turn miniboard.active field:not(.occupied):hover {
   background-color: rgba(224, 17, 57, 0.27) !important;
 }
 
-.blues-turn .area.active .field:not(.occupied):hover {
+.blues-turn miniboard.active field:not(.occupied):hover {
   background-color: rgba(60, 107, 208, 0.27) !important;
 }
 
-.area.active .field:not(.occupied){
+miniboard.active field:not(.occupied){
   background-color: #222;
 }
 
-.area {
+miniboard {
   display: grid;
   grid-template-columns: repeat(3, 1.00fr);
   justify-items: stretch;

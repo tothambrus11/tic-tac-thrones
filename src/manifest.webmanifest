@@ -1,7 +1,7 @@
 {
   "name": "Tic Tac Thrones",
   "short_name": "Tic Tac Thrones",
-  "theme_color": "#2a498c",
+  "theme_color": "#000000",
   "background_color": "#151515",
   "display": "standalone",
   "scope": "./",

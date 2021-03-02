@@ -1,0 +1,35 @@
+@mixin occupiable($level3) {
+  transition: 0.3s;
+
+  &.occupied {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #151515;
+    padding: 0;
+
+    &.blues {
+      .inner{
+        background-image: url("/src/assets/Xr.svg");
+      }
+    }
+
+    &.reds {
+      .inner{
+        background-image: url("/src/assets/O.svg");
+      }
+    }
+
+    .inner {
+      width: 100%;
+      height: 100%;
+
+      box-sizing: border-box;
+      background-size: 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation-name: growbg;
+      animation-duration: .3s;
+    }
+  }
+}

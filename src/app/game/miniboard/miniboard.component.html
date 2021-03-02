@@ -1,0 +1,14 @@
+<ng-container *ngIf="!miniBoard.occupied">
+  <ng-container *ngFor="let row of miniBoard.fields">
+    <ng-container *ngFor="let field of row">
+      <field
+        [field]="field"
+        [class.occupied]="field.occupied"
+        [class.reds]="field.occupiedBy === false"
+        [class.blues]="field.occupiedBy === true"
+        (click)="field.tryOccupy()"
+      ></field>
+    </ng-container>
+  </ng-container>
+</ng-container>
+<div class="inner" *ngIf="miniBoard.occupied"></div>

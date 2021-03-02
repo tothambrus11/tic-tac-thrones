@@ -7,12 +7,24 @@ import { GameComponent } from './game/game.component';
 import { HomeComponent } from './home/home.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FieldComponent } from './game/field/field.component';
+import { MiniboardComponent } from './game/miniboard/miniboard.component';
+import { HomecontentComponent } from './home/homecontent/homecontent.component';
+import { AboutComponent } from './home/about/about.component';
+import { FaqComponent } from './home/faq/faq.component';
+import { ContactComponent } from './home/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    HomeComponent
+    HomeComponent,
+    FieldComponent,
+    MiniboardComponent,
+    HomecontentComponent,
+    AboutComponent,
+    FaqComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

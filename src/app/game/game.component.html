@@ -1,1 +1,21 @@
-<div #cont id="cont"></div>
+<div [class.game]="true"
+     [class.blues-turn]="game.whoseTurn"
+     [class.reds-turn]="!game.whoseTurn"
+     [class.occupied]="game.occupied"
+     [class.blues]="game.occupiedBy === true"
+     [class.reds]="game.occupiedBy === false">
+  <ng-container *ngIf="!game.occupied">
+    <ng-container *ngFor="let row of game.miniBoards">
+      <ng-container *ngFor="let miniBoard of row">
+        <miniboard
+          [miniBoard]="miniBoard"
+          [class.active]="miniBoard.active"
+          [class.occupied]="miniBoard.occupied"
+          [class.reds]="miniBoard.occupiedBy === false"
+          [class.blues]="miniBoard.occupiedBy === true"></miniboard>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="game.occupied" class="inner">
+  </div>
+</div>
