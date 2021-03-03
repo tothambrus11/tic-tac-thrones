@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +6,4 @@ import {Component, ViewChild} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor() {
-   // const game = new Game(document.getElementById("cont") as HTMLDivElement);
-    console.log("asdf");
-  }
 }

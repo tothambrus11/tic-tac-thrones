@@ -1,8 +1,11 @@
 $outer-border: #080808;
 $inner-border: #0e0e0e;
+$header-size: 0.15;
 
 :root {
   --unit: min(100vw, 800px);
+  --size-x: var(--unit);
+  --size-y: calc(var(--unit) * #{1+2*$header-size});
   --inner-border-width: max(2px, calc(var(--unit) * 0.005));
   --outer-border-width: max(3px, calc(var(--unit) * 0.015));
   --outer-outer-border-width: max(9px, calc(var(--unit) * 0.045));
@@ -27,11 +30,10 @@ $inner-border: #0e0e0e;
   transition: 0.3s;
 
   &.occupied {
-    display: flex;
+    grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
     background-color: #151515;
-    padding: 0;
 
     &.blues {
       .inner{

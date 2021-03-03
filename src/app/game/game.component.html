@@ -1,4 +1,5 @@
-<div [class.game]="true"
+<div *ngIf="show"
+     [class.game]="true"
      [class.blues-turn]="game.whoseTurn"
      [class.reds-turn]="!game.whoseTurn"
      [class.occupied]="game.occupied"

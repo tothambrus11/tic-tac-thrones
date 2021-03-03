@@ -1,22 +1,6 @@
 import {Color, Colors} from './colors';
 import {Occupiable} from './occupiable';
 
-export interface Pos {
-  x: number;
-  y: number;
-}
-
-export const winPositions: Pos[][] = [
-  [{x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2}],
-  [{x: 1, y: 0}, {x: 1, y: 1}, {x: 1, y: 2}],
-  [{x: 2, y: 0}, {x: 2, y: 1}, {x: 2, y: 2}],
-  [{y: 0, x: 0}, {y: 0, x: 1}, {y: 0, x: 2}],
-  [{y: 1, x: 0}, {y: 1, x: 1}, {y: 1, x: 2}],
-  [{y: 2, x: 0}, {y: 2, x: 1}, {y: 2, x: 2}],
-  [{x: 0, y: 0}, {x: 1, y: 1}, {x: 2, y: 2}],
-  [{x: 0, y: 2}, {x: 1, y: 1}, {x: 2, y: 0}]
-];
-
 export class MiniBoard extends Occupiable {
   //fields: Field[][];
 
@@ -34,7 +18,7 @@ export class MiniBoard extends Occupiable {
     }
   }
 
-  get fields(){
+  get fields() {
     return this.children as Field[][];
   }
 
@@ -48,17 +32,24 @@ export class Field extends Occupiable {
 
   tryOccupy() {
     if (this.miniBoard.active && !this.occupied) {
-      this.occupy(this.game.whoseTurn);
-      this.game.onTic(this.miniBoard, this);
+      this.occupyNoCheck();
+      this.game.history += this.miniBoard.x + '' + this.miniBoard.y + '' + this.x + '' + this.y;
+      this.game.saveHistory();
       return true;
     }
     return false;
+  }
+
+  occupyNoCheck() {
+    this.occupy(this.game.whoseTurn);
+    this.game.activateMiniboards(this.x, this.y);
   }
 
 }
 
 export class Game extends Occupiable {
   whoseTurn: Color = Colors.BLUE;
+  history: string = '';
 
   constructor() {
     super();
@@ -72,10 +63,10 @@ export class Game extends Occupiable {
     }
   }
 
-  onTic(chosenMiniBoard: MiniBoard, choseField: Field): void {
+  activateMiniboards(chosenX: number, chosenY: number): void {
     this.whoseTurn = !this.whoseTurn;
 
-    if (this.children![choseField.y][choseField.x].isFinished) {
+    if (this.children![chosenY][chosenX].isFinished) {
       // bármelyik miniboardra rakhatunk, ami nem finished
       for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
@@ -91,12 +82,55 @@ export class Game extends Occupiable {
           (this.children![i][j] as MiniBoard).active = false;
         }
       }
-      (this.children![choseField.y][choseField.x] as MiniBoard).active = true;
+      (this.children![chosenY][chosenX] as MiniBoard).active = true;
     }
   }
 
-  get miniBoards(){
+  get miniBoards() {
     return this.children as MiniBoard[][];
   }
 
+  initFromHistory(h: string) {
+    let mx, my, fx, fy;
+    for (let i = 0; i < h.length;) {
+      mx = Number(h.charAt(i++));
+      my = Number(h.charAt(i++));
+      fx = Number(h.charAt(i++));
+      fy = Number(h.charAt(i++));
+      this.miniBoards[my][mx].fields[fy][fx].occupyNoCheck();
+    }
+    this.history = h;
+  }
+
+  saveHistory() {
+    localStorage.setItem("history", this.history);
+  }
+
+  undo(){
+    if(this.history.length>0){
+      let h = this.history;
+      const mx = Number(h.charAt(h.length - 4));
+      const my = Number(h.charAt(h.length - 3));
+      const fx = Number(h.charAt(h.length - 2));
+      const fy = Number(h.charAt(h.length - 1));
+      this.miniBoards[my][mx].fields[fy][fx].unoccupy();
+
+      h = h.substr(0, h.length - 4);
+
+      if(h.length > 0){
+        const pfx = Number(h.charAt(h.length - 2));
+        const pfy = Number(h.charAt(h.length - 1));
+        this.activateMiniboards(pfx, pfy);
+      } else {
+        for (const row of this.miniBoards) {
+          for (const miniBoard of row) {
+            miniBoard.active = true;
+          }
+        }
+      }
+      this.history = h;
+      this.saveHistory();
+
+    }
+  }
 }
