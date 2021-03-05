@@ -1,9 +1,9 @@
 $outer-border: #080808;
 $inner-border: #0e0e0e;
-$header-size: 0.15;
+$header-size: 0.11;
 
 :root {
-  --unit: min(100vw, 800px);
+  --unit: 100vw;
   --size-x: var(--unit);
   --size-y: calc(var(--unit) * #{1+2*$header-size});
   --inner-border-width: max(2px, calc(var(--unit) * 0.005));
@@ -11,17 +11,17 @@ $header-size: 0.15;
   --outer-outer-border-width: max(9px, calc(var(--unit) * 0.045));
 }
 
-@media (min-aspect-ratio: 1/1) {
+@media (min-aspect-ratio: 1000/#{(1+2*$header-size)*1000}) {
   :root {
-    --unit: min(100vh, 800px);
+    --unit: #{100/(1+2*$header-size)}vh;
   }
 }
 
 @keyframes growbg {
-  from{
+  from {
     background-size: 0;
   }
-  to{
+  to {
     background-size: 60%;
   }
 }
@@ -36,13 +36,13 @@ $header-size: 0.15;
     background-color: #151515;
 
     &.blues {
-      .inner{
+      .inner {
         background-image: url(../assets/Xr.svg);
       }
     }
 
     &.reds {
-      .inner{
+      .inner {
         background-image: url(../assets/O.svg);
       }
     }
@@ -61,17 +61,22 @@ $header-size: 0.15;
   }
 }
 
-.game {
+.game-outer {
+  width: var(--size-x);
+  height: var(--size-y);
   display: grid;
-  grid-template-columns: repeat(3, 1.00fr);
-  justify-items: stretch;
-  align-items: stretch;
+  grid-template-rows: #{$header-size}fr 1fr #{$header-size}fr;
+
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  max-width: 800px;
-  max-height: 800px;
+  overflow: hidden;
+}
+
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   background-color: $outer-border;
   width: var(--unit);
   height: var(--unit);
@@ -83,7 +88,7 @@ $header-size: 0.15;
 
   @include occupiable(9);
 
-  &.occupied{
+  &.occupied {
     border: calc(var(--outer-outer-border-width)) solid $outer-border;
   }
 }
@@ -92,7 +97,7 @@ $header-size: 0.15;
 //ok
 field {
   background-color: #151515;
-
+  //border: var(--inner-border-width) solid $inner-border;
   @include occupiable(1);
 }
 
@@ -104,15 +109,19 @@ field {
   background-color: rgba(60, 107, 208, 0.27) !important;
 }
 
-miniboard.active field:not(.occupied){
+miniboard.active field:not(.occupied) {
   background-color: #222;
 }
+/*.reds-turn miniboard.active field:not(.occupied) {
+  background-color: #1d0206;
+}
+.blues-turn miniboard.active field:not(.occupied) {
+  background-color: #0d172b;
+}*/
 
 miniboard {
   display: grid;
   grid-template-columns: repeat(3, 1.00fr);
-  justify-items: stretch;
-  align-items: stretch;
   grid-gap: var(--inner-border-width);
   height: 100%;
   width: 100%;

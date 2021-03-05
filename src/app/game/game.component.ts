@@ -27,5 +27,11 @@ export class GameComponent {
     this.game.undo();
   }
 
+  newGame(){
+    if(confirm("Are you sure you want to start a new game?")){
+      this.game = new Game();
+      this.game.saveHistory();
+    }
+  }
 
 }

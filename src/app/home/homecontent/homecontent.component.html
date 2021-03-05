@@ -2,18 +2,23 @@
   Tic Tac Thrones
 </h1>
 <p style="text-align: center">
-  A reimagined version of the legendary tic tac toe game.
+  A reimagined version of the legendary<br>tic-tac-toe game.
 </p>
 
 <div id="btn-cnt">
   <button routerLink="local-game">
     <span>Local Game</span>
-    <img src="assets/play.svg" />
+    <img src="assets/play.svg"/>
   </button>
-  <button>
+  <button (click)="privateRoom()">
     <span>Private Room</span>
-    <img src="assets/internet.svg" />
+    <img src="assets/internet.svg"/>
   </button>
 </div>
-<h2>How to play?</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur explicabo officia quam veniam. Accusamus aspernatur dolorem eligendi labore perspiciatis placeat quaerat similique. Dolorum laboriosam minus nihil nulla porro, reprehenderit.</p>
+<h2 (click)="showRules = !showRules" style="margin-bottom: -10px; cursor: pointer;">How to play?<br>
+  <img height="32" src="/assets/expMore.svg" [class.rotating-icon]="true" [class.rotated-icon]="showRules"></h2>
+<p [class.rules]="true" [class.shown]="showRules">
+  In this game the board is divided into simultaneous games of the classic children's game, tic-tac-toe. On your turn you
+  can claim a square that is in the area determined by your opponents last move. If you win a small game of tic-tac-toe
+  you can claim the region of the board it is on. If you have three of these regions in a line you win.
+</p>

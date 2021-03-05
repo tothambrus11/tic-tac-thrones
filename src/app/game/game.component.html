@@ -1,22 +1,39 @@
-<div *ngIf="show"
-     [class.game]="true"
-     [class.blues-turn]="game.whoseTurn"
-     [class.reds-turn]="!game.whoseTurn"
-     [class.occupied]="game.occupied"
-     [class.blues]="game.occupiedBy === true"
-     [class.reds]="game.occupiedBy === false">
-  <ng-container *ngIf="!game.occupied">
-    <ng-container *ngFor="let row of game.miniBoards">
-      <ng-container *ngFor="let miniBoard of row">
-        <miniboard
-          [miniBoard]="miniBoard"
-          [class.active]="miniBoard.active"
-          [class.occupied]="miniBoard.occupied"
-          [class.reds]="miniBoard.occupiedBy === false"
-          [class.blues]="miniBoard.occupiedBy === true"></miniboard>
+<div class="game-outer noselect">
+  <header>
+    <h1>Tic Tac Thrones</h1>
+    <div id="header-right">
+      <button class="tooltip" id="home" routerLink="/">
+        <span class="tooltiptext">Home</span>
+      </button>
+      <button class="tooltip" id="undo" (click)="undo()">
+        <span class="tooltiptext">Undo</span>
+      </button>
+      <button class="tooltip" id="new-game" (click)="newGame()">
+        <span class="tooltiptext">New Game</span>
+      </button>
+    </div>
+  </header>
+  <div *ngIf="show"
+       [class.game]="true"
+       [class.blues-turn]="game.whoseTurn"
+       [class.reds-turn]="!game.whoseTurn"
+       [class.occupied]="game.occupied"
+       [class.blues]="game.occupiedBy === true"
+       [class.reds]="game.occupiedBy === false">
+    <ng-container *ngIf="!game.occupied">
+      <ng-container *ngFor="let row of game.miniBoards">
+        <ng-container *ngFor="let miniBoard of row">
+          <miniboard
+            [miniBoard]="miniBoard"
+            [class.active]="miniBoard.active"
+            [class.occupied]="miniBoard.occupied"
+            [class.reds]="miniBoard.occupiedBy === false"
+            [class.blues]="miniBoard.occupiedBy === true"></miniboard>
+        </ng-container>
       </ng-container>
     </ng-container>
-  </ng-container>
-  <div *ngIf="game.occupied" class="inner">
+    <div *ngIf="game.occupied" class="inner">
+    </div>
   </div>
+  <div></div>
 </div>

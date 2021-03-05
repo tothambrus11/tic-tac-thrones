@@ -1,2 +1,96 @@
 @import "../../variables.scss";
 @import "./occupiable.scss";
+
+:host{
+  //background: linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6) ), url('../../assets/tttbg2.webp');
+  //background-size: 50% auto;
+  //background-position: center;
+  background: #252525;
+  height: 100%;
+  display: block;
+}
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: var(--outer-border-width);
+
+  h1{
+    color: white;
+    margin: 0 0 0 calc(var(--unit) * 0.03);
+    font-size: min(2em, var(--unit) * 0.07);
+  }
+
+  #header-right{
+    width: calc(var(--unit) / 3 - var(--outer-border-width));
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+
+    button {
+      height: calc(var(--unit) / 9 * 0.7);
+      width: calc(var(--unit) / 9 * 0.7);
+      border: 0;
+      border-radius: 50%;
+      background-color: transparent;
+      background-position: center;
+      background-size: 70%;
+      background-repeat: no-repeat;
+      transition: .3s;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        background-color: #2a2a2a;
+      }
+
+      &#home {
+        background-image: url(../../assets/home.svg);
+      }
+
+      &#undo {
+        background-image: url(../../assets/undo.svg);
+      }
+
+      &#new-game {
+        background-image: url(../../assets/refresh.svg);
+      }
+    }
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

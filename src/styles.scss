@@ -11,15 +11,12 @@ html, body {
   height: 100%;
 }
 
-:root {
-  --unit: min(100vw, 800px);
-  --inner-border-width: max(2px, calc(var(--unit) * 0.005));
-  --outer-border-width: max(3px, calc(var(--unit) * 0.015));
-  --outer-outer-border-width: max(9px, calc(var(--unit) * 0.045));
-}
-
-@media (min-aspect-ratio: 1/1) {
-  :root {
-    --unit: min(100vh, 800px);
-  }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
