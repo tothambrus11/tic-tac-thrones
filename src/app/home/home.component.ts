@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
 
 @Component({
@@ -7,11 +7,10 @@ import {NavigationStart, Router} from '@angular/router';
   styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements AfterViewInit{
 
   isHomePage: boolean;
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private cd: ChangeDetectorRef) {
     this.isHomePage = router.url == '/';
     router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
@@ -20,16 +19,26 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    /*let game = new Game(this.cont!.nativeElement);
+  @ViewChild("main")
+  main?: ElementRef<HTMLElement>;
 
-    let a = false;
-    for (let i = 0; i < 40; ) {
-      a = !a;
-      if(game.miniBoards[Math.floor(Math.random()*3)][Math.floor(Math.random()*3)].fields[Math.floor(Math.random()*3)][Math.floor(Math.random()*3)].tryOccupy()){
-        i++;
-      }
-    }*/
+  ngAfterViewInit() {
+      this.onResize();
+      this.cd.detectChanges();
   }
 
+  footerAtTheBottom: boolean = true;
+  shouldBeRounded: boolean = true;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.footerAtTheBottom = this.main!.nativeElement.offsetHeight + 169 <= document.body.offsetHeight;
+    this.shouldBeRounded = this.main!.nativeElement.offsetHeight + 10 <= document.body.offsetHeight;
+  }
+
+  onResizeTimeout() {
+    setTimeout(()=>this.onResize(), 100);
+    setTimeout(()=>this.onResize(), 300);
+    setTimeout(()=>this.onResize(), 40);
+  }
 }

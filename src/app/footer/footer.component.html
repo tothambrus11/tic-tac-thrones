@@ -1,0 +1,13 @@
+<div></div>
+<div class="center">
+  <a routerLink="about" i18n>About Us</a>
+  <a routerLink="faq" i18n>FAQ</a>
+  <a routerLink="contact" i18n>Contact</a>
+  <a href="https://github.com/tothambrus11/tic-tac-thrones"><img src="assets/github.svg" width="24" alt="GitHub Page"></a>
+</div>
+<div class="right">
+  <select [value]="currentLang" (change)="onChange($event)">
+    <option value="en-US">English</option>
+    <option value="hu">Hungarian</option>
+  </select>
+</div>

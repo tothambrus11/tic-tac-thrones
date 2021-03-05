@@ -9,10 +9,21 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source" : "/",
+        "destination" : "/en-US",
+        "type" : 301
+      }
+    ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/en-US/**",
+        "destination": "/en-US/index.html"
+      },
+      {
+        "source": "/hu/**",
+        "destination": "/hu/index.html"
       }
     ]
   }

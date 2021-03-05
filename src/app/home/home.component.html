@@ -1,19 +1,11 @@
-<main>
+<main #main [class.rounded]="shouldBeRounded">
   <a *ngIf="!isHomePage" [routerLink]="'/'" class="back-to-home">
-    <img src="/assets/back.svg">
-    <span>Back to home</span>
+    <img src="assets/back.svg">
+    <span i18n>Back to home</span>
   </a>
 
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onResizeTimeout()"></router-outlet>
 
-  <footer class="top">
-    <a routerLink="about">About Us</a>
-    <a routerLink="faq">FAQ</a>
-    <a routerLink="contact">Contact</a>
-  </footer>
+  <footer [class.top]="true" [class.hidden]="footerAtTheBottom"></footer>
 </main>
-<footer class="bottom">
-  <a routerLink="about">About Us</a>
-  <a routerLink="faq">FAQ</a>
-  <a routerLink="contact">Contact</a>
-</footer>
+<footer [class.bottom]="true" [class.hidden]="!footerAtTheBottom"></footer>

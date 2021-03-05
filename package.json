@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --localize",
     "test": "ng test",
     "lint": "ng lint",
+    "deploy": "npm run build && firebase deploy",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -28,6 +29,8 @@
     "@angular-devkit/build-angular": "~0.1100.5",
     "@angular/cli": "~11.0.5",
     "@angular/compiler-cli": "~11.0.5",
+    "@angular/localize": "^11.0.9",
+    "@babel/preset-typescript": "^7.13.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
