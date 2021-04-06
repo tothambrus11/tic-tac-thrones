@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "https://tictac-thrones.web.app/"
+  baseUrl: "https://tic-tac-thrones.tk/"
 };
